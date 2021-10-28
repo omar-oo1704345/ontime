@@ -62,18 +62,18 @@ class _LoginState extends State<Login> {
       String email;
       try {
         print("welcome");
-        // _empIdRef.child(_username).once().then((snapshot) {
-        //   if (snapshot == null) {
-        //     print("popped");
-        //     _errorMessage = "Invalid Login Details";
-        //   } else {
-        //     print("welcome2");
-        //     email = snapshot.value;
-        //   }
+        _empIdRef.child(_username).once().then((snapshot) {
+          if (snapshot == null) {
+            print("popped");
+            _errorMessage = "Invalid Login Details";
+          } else {
+            print("welcome2");
+            email = snapshot.value;
+          }
         loginUser("abc@gmail.com");
-        // }).timeout(const Duration(seconds: 10), onTimeout: (){
-        //   print("timeout");
-        // });
+        }).timeout(const Duration(seconds: 10), onTimeout: (){
+          print("timeout");
+        });
       } catch (e) {
         print("A7A");
         print(e);

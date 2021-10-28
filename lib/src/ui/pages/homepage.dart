@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.blue,
                     fontFamily: "poppins-medium",
                     fontSize: 18),
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage>
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       'Okay',
                       style: TextStyle(fontSize: 18.0, color: Colors.white),
                     ),

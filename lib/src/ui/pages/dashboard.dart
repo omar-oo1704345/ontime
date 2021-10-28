@@ -104,9 +104,9 @@ class DashboardMainPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: const [splashScreenColorBottom, splashScreenColorTop],
+            colors: [splashScreenColorBottom, splashScreenColorTop],
             begin: Alignment.bottomCenter,
             end: Alignment.topRight,
           ),
@@ -143,10 +143,10 @@ class _NavigationPanelState extends State<NavigationPanel> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: OutlineButton(
-        shape: new RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)),
         hoverColor: Colors.transparent,
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white, //Color of the border
           style: BorderStyle.solid, //Style of the border
           width: 0.8, //width of the border
@@ -160,7 +160,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
           ),
           title: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: "Poppins-Medium",
               color: Colors.white,
               fontSize: 18,
@@ -195,7 +195,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                    return Text(
+                    return const Text(
                       'Press the button to fetch data',
                       textAlign: TextAlign.center,
                     );
@@ -206,11 +206,12 @@ class _NavigationPanelState extends State<NavigationPanel> {
                     return Container();
 
                   case ConnectionState.done:
-                    if (snapshot.hasError)
+                    if (snapshot.hasError) {
                       return Text(
                         'Error:\n\n${snapshot.error}',
                         textAlign: TextAlign.center,
                       );
+                    }
                       return Stack(children: [
                         drawerTile("Allocated Location: ${snapshot.data}",
                             null, Icons.location_on),
@@ -231,7 +232,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                    return Text(
+                    return const Text(
                       'Press the button to fetch data',
                       textAlign: TextAlign.center,
                     );
@@ -242,13 +243,14 @@ class _NavigationPanelState extends State<NavigationPanel> {
                     return Container();
 
                   case ConnectionState.done:
-                    if (snapshot.hasError)
+                    if (snapshot.hasError) {
                       return Text(
                         'Error:\n\n${snapshot.error}',
                         textAlign: TextAlign.center,
                       );
+                    }
                     print(snapshot.data.value);
-                    if (snapshot.data.value == null || snapshot.data.value == 1)
+                    if (snapshot.data.value == null || snapshot.data.value == 1) {
                       return Stack(children: [
                         drawerTile("Review Pending Leaves", () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -258,7 +260,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
                                     user: widget.user,
                                   )));
                         }, Icons.perm_identity),
-                        Positioned(
+                        const Positioned(
                           child: Icon(
                             Icons.notifications,
                             color: Colors.yellow,
@@ -268,6 +270,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
                           height: 40,
                         ),
                       ]);
+                    }
 
                     return Container();
                 }
