@@ -14,11 +14,15 @@ class OfficeDatabase {
   OfficeDatabase._internal();
 
   Future<Office> getOfficeBasedOnUID(String uid) async {
+    print(uid);
     DataSnapshot dataSnapshot = await _databaseReference.child("users").once();
     final userInfo = dataSnapshot.value[uid];
+    print(userInfo);
     final office = userInfo["allotted_office"];
+    print(office);
 
     dataSnapshot = await _databaseReference.child("location").once();
+    print(dataSnapshot);
     final findOffice = dataSnapshot.value[office];
     final name = findOffice["name"];
     final latitude = findOffice["latitude"];

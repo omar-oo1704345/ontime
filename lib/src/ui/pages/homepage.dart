@@ -40,8 +40,9 @@ class _HomePageState extends State<HomePage>
     try {
       result = await Permission
           .locationWhenInUse.serviceStatus.isEnabled;
-      switch (result) {
-        case PermissionStatus.granted:
+      print("YESSS");
+      print(result);
+      if (result) {
           GeofencingManager.initialize().then((_) {
             officeDatabase.getOfficeBasedOnUID(widget.user.uid).then((office) {
               print(office.latitude);
@@ -53,17 +54,8 @@ class _HomePageState extends State<HomePage>
               });
             });
           });
-          break;
-        case PermissionStatus.permanentlyDenied:
-          print("DENIED");
-          break;
-        case PermissionStatus.denied:
-          // do something
-          break;
-        case PermissionStatus.restricted:
-          // do something
-          break;
-        default:
+      }else{
+        print("denied");
       }
     } on PlatformException catch (e) {
       print(e);
