@@ -24,6 +24,7 @@ class OfficeDatabase {
     dataSnapshot = await _databaseReference.child("location").once();
     print(dataSnapshot);
     final findOffice = dataSnapshot.value[office];
+    print(findOffice);
     final name = findOffice["name"];
     final latitude = findOffice["latitude"];
     final longitude = findOffice["longitude"];

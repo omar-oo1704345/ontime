@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
             print("welcome2");
             email = snapshot.value;
           }
-        loginUser("abc@gmail.com");
+        loginUser(email);
         }).timeout(const Duration(seconds: 10), onTimeout: (){
           print("timeout");
         });
