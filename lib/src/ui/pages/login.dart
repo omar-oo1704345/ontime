@@ -69,6 +69,7 @@ class _LoginState extends State<Login> {
           } else {
             print("welcome2");
             email = snapshot.value;
+            print(email);
           }
         loginUser(email);
         }).timeout(const Duration(seconds: 10), onTimeout: (){
@@ -81,8 +82,8 @@ class _LoginState extends State<Login> {
     }
   }
 
-  Future<List> checkForSingleSignOn(User _user) async {
-    DataSnapshot dataSnapshot = await _userRef.child(_user.uid).once();
+  Future<List> checkForSingleSignOn() async {
+    DataSnapshot dataSnapshot = await _userRef.child(_user.tenantId).once();
 
     if (dataSnapshot != null) {
       var uuid = dataSnapshot.value["UUID"];
@@ -105,7 +106,7 @@ class _LoginState extends State<Login> {
       try {
         _user = await authObject.signIn(email, _password);
 
-        checkForSingleSignOn(_user).then((list) {
+        checkForSingleSignOn().then((list) {
           Navigator.of(context).pop();
 
           // Adding UUID to database
